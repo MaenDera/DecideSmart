@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecideSmart</title>
+    <link rel="stylesheet" type="text/css" href="../templates/style.css">    
+    <script>
+      // Create a function to update the date and time
+      function updateDateTime() {
+        // Get the current date and time from the system
+        let now = new Date();
+        // Convert it to a string in 24 hour format with date
+        let dateTimeString = new Intl.DateTimeFormat('en-US', {hour12: false, year:'numeric', month: 'long', day: 'numeric'}).format(now);
+        // Convert it to a string in 24 hour format with time
+        let timeString = new Intl.DateTimeFormat('en-US', {hour12: false, hour: 'numeric', minute: 'numeric'}).format(now);
+        // Get the HTML element that shows the date and time
+        let dateTimeElement = document.getElementById("dateTime");
+        // Set its content to the date and time string with a "-" separator
+        dateTimeElement.innerHTML = dateTimeString + " - " + timeString;
+      }
+
+      // Call the function every second to update the date and time
+      setInterval(updateDateTime, 10000);
+            // Call the function when window loads
+            window.onload = updateDateTime;
+    </script>
+
+</head>
+<body><br>
+  <div><br>
+    <div id="container" max-width: 100%;>
+      <h2 align="center" style="color: #f2f2f2;">Welcome to DecideSmart</h2>
+    </div><br>
+    <div><br>
+    <p>&nbsp;Are you tired of struggling to make difficult decisions?</p>
+    <p>&nbsp;Look no further than DecideSmart! Using advanced methods from decision science.</p>
+    <p>&nbsp;Whether you want to buy a new car, plan a trip, or invest your money, DecideSmart can help you compare and evaluate your alternatives based on multiple criteria that matter to you.</p>
+    <p>&nbsp;DecideSmart uses MCDA to rank your options according to their overall performance on each criterion, or Gittins to allocate your resources optimally in uncertain situations.</p>
+    <p>&nbsp;With DecideSmart, you can make informed and rational decisions that suit your preferences and goals.</p>
+    <ul>
+      <li>MCDA is a method for evaluating and comparing multiple options based on multiple criteria that may be conflicting or incommensurable. For example, if you want to buy a new car, you may have criteria such as price, fuel efficiency, safety, comfort, etc. MCDA helps you rank your options according to their overall performance on each criterion, taking into account your preferences and weights for each criterion.</li><br>
+      <p>Example of MCDA:</p>
+
+      <p>Suppose you want to buy a new car and have the following criteria and weights:</p>
+      <ul>
+        <li>Price: 30%</li>
+        <li>Fuel efficiency: 25%</li>
+        <li>Safety: 20%</li>
+        <li>Comfort: 15%</li>
+        <li>Style: 10%</li>
+      </ul>
+      <p>You have three options to choose from, and you rate each option on a scale of 1-10 for each criterion:</p>
+      <table>
+        <tr>
+          <th>Option</th>
+          <th>Price</th>
+          <th>Fuel efficiency</th>
+          <th>Safety</th>
+          <th>Comfort</th>
+          <th>Style</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>6</td>
+          <td>8</td>
+          <td>7</td>
+          <td>9</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>8</td>
+          <td>9</td>
+          <td>8</td>
+          <td>7</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>7</td>
+          <td>7</td>
+          <td>9</td>
+          <td>8</td>
+          <td>8</td>
+        </tr>
+      </table>
+      <p>To calculate the overall performance of each option, you multiply the rating of each criterion by its weight, and then sum the results:</p>
+      <ul>
+        <li>Option 1: (6*0.3)+(8*0.25)+(7*0.2)+(9*0.15)+(5*0.1) = 6.6</li><br>
+        <li>Option 2: (8*0.3)+(9*0.25)+(8*0.2)+(7*0.15)+(6*0.1) = 7.95</li><br>
+        <li>Option 3: (7*0.3)+(7*0.25)+(9*0.2)+(8*0.15)+(8*0.1) = 7.35</li>
+      </ul>
+      <p>Based on these results, Option 2 has the highest overall performance and would be the recommended choice.</p><br>
+      <hr class="mid-line"><br><br>
+      <li>Gittins algorithm, on the other hand, is a statistical method used to solve sequential decision problems. In these types of problems, a decision must be made at each stage based on the outcomes of previous decisions. For example, if you want to invest your money in different stocks, you may face uncertainty about their future returns, etc. Gittins algorithm helps you to decide which option to choose at each stage by calculating the expected value of each option based on the information available. This algorithm is particularly useful in situations where there is uncertainty about the outcome of each decision.</li>
+      <p>Example of Gittins algorithm</p>
+      <p>Suppose you have $100,000 to invest in the stock market and have two options: Stock A and Stock B. Each year, you can choose to either invest in one of the stocks or keep your money in cash, with the following probabilities and payoffs:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Invest</th>
+            <th>Hold cash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stock A</td>
+            <td>60% chance of $10,000 profit<br>40% chance of $5,000 loss</td>
+            <td>100% chance of $0 profit</td>
+          </tr>
+          <tr>
+            <td>Stock B</td>
+            <td>50% chance of $20,000 profit<br>50% chance of $10,000 loss</td>
+            <td>100% chance of $0 profit</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>To use Gittins algorithm to make the optimal investment decision, you first calculate the "Gittins index" for each option, which represents the expected value of the option given the current information. The Gittins index for each option is updated after each decision, based on the outcomes.</p>
+      <p>At the beginning, the Gittins index for each option is:</p>
+      <ul>
+        <li>Stock A: 8.32</li>
+        <li>Stock B: 12.36</li>
+      </ul>
+      <p>Given these Gittins indices, the optimal choice is Stock B. If you invest in Stock B and get a $20,000 profit, the Gittins index for Stock B increases to 16.81, making it still the optimal choice. If you instead get a $10,000 loss, the Gittins index for Stock B decreases to 7.41, making Stock A the optimal choice for the next decision.</p>
+      <p>The Gittins indices of 8.32 and 12.36 were calculated for Stock A and Stock B respectively using the Gittins algorithm. This algorithm is a statistical method that uses a dynamic programming approach to recursively calculate the Gittins index, which represents the expected value of an option based on the current information available.</p>
+      <p>Using the Gittins algorithm helps you to make the best decision at each stage based on the current information and expected values, taking into account the uncertainty of the outcomes.</p>
+    </ul>
+    <hr class="mid-line"><br>
+    <h3 align="center"  >Choose between two algorithms</h3>
+    <p style="text-align:center; font-weight:bold; font-size: 100%;">MCDA Multiple Criteria Decision Analysis (certainty situation) 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      Gittins algorithm (uncertainty situation)</p><br>
+  </div>
+</body>
+<p>Gittins algorithm:</p>
+    <form method="POST" action="/submit-form">
+        <style>
+          label {
+            padding-right: 8px;
+            padding-left: 16px;
+          }
+        </style>
+        <label for="num_options">Enter the number of options:</label>
+        <input type="number" id="num_options" name="num_options" min="2" required><br><br>
+  
+        <div id="options">
+          <!-- Option fields will be added dynamically using JavaScript -->
+        </div>
+        
+        <div align = left>
+        <input type="submit" value="Submit">
+        </div>
+      </form><br>
+<p>MCDA Multiple Criteria Decision Analysis:</p>
+    <form id="mcda-form" action="/MCDA" method="POST">
+        <style>
+            label {
+              padding-right: 8px;
+              padding-left: 16px;
+            }
+          </style>
+        <label for="num_criteria">Number of criteria:</label>
+        <input type="number" id="num_criteria" name="num_criteria"><br><br>
+        <div id="criteria-fields"></div>
+
+        <label for="num_offers">Number of offers:</label>
+        <input type="number" id="num_offers" name="num_offers"><br><br>
+        <div id="offer-fields"></div>
+    
+        <input type="submit" value="Submit">
+    </form>
+    
+    <script>
+        const numOptionsInput = document.querySelector('#num_options');
+        const optionsContainer = document.querySelector('#options');
+        const resultContainer = document.querySelector('#result');
+  
+        numOptionsInput.addEventListener('input', () => {
+          const numOptions = numOptionsInput.value;
+  
+          // Remove any previously added option fields
+          optionsContainer.innerHTML = '';
+  
+          // Add option fields dynamically based on number of options
+          for (let i = 0; i < numOptions; i++) {
+            const optionDiv = document.createElement('div');
+            optionDiv.classList.add('option');
+  
+            const nameLabel = document.createElement('label');
+            nameLabel.textContent = `Name of option ${i + 1}:`;
+            optionDiv.appendChild(nameLabel);
+  
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.name = `option_${i}_name`;
+            nameInput.required = true;
+            nameInput.value = sessionStorage.getItem(`option_${i}_name`) || '';
+            optionDiv.appendChild(nameInput);
+            
+            const costLabel = document.createElement('label');
+            costLabel.textContent = `Cost of option ${i + 1}:`;
+            optionDiv.appendChild(costLabel);
+            
+            const costInput = document.createElement('input');
+            costInput.type = 'number';
+            costInput.name = `option_${i}_cost`;
+            costInput.step = 'any';
+            costInput.required = true;
+            costInput.value = sessionStorage.getItem(`option_${i}_cost`) || '';
+            optionDiv.appendChild(costInput);
+            
+            const probLabel = document.createElement('label');
+            probLabel.textContent = `Probability of success for option ${i + 1}:`;
+            optionDiv.appendChild(probLabel);
+            
+            const probInput = document.createElement('input');
+            probInput.type = 'number';
+            probInput.name = `option_${i}_prob`;
+            probInput.step = 'any';
+            probInput.min = 0;
+            probInput.max = 1;
+            probInput.required = true;
+            probInput.value = sessionStorage.getItem(`option_${i}_prob`) || '';
+            optionDiv.appendChild(probInput);
+            
+  
+            optionsContainer.appendChild(optionDiv);
+          }
+        });
+    </script>
+
+    <script>
+        const form = document.querySelector('#mcda-form');
+    
+        // Listen for changes in the number of criteria input field
+        const numCriteriaInput = form.querySelector('#num_criteria');
+        numCriteriaInput.addEventListener('change', () => {
+            const numCriteria = numCriteriaInput.value;
+    
+            // Create or remove the necessary input fields dynamically
+            const criteriaFields = document.querySelector('#criteria-fields');
+            criteriaFields.innerHTML = '';
+            for (let i = 0; i < numCriteria; i++) {
+                const label = document.createElement('label');
+                label.for = `criteria_name_${i+1}`;
+                label.innerHTML = `Criterion ${i+1} name:`;
+                criteriaFields.appendChild(label);
+    
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = `criteria_name_${i+1}`;
+                input.name = `criteria_name_${i+1}`;
+                criteriaFields.appendChild(input);
+    
+                const weightLabel = document.createElement('label');
+                weightLabel.for = `criteria_weight_${i+1}`;
+                weightLabel.innerHTML = `Criterion ${i+1} weight:`;
+                criteriaFields.appendChild(weightLabel);
+    
+                const weightInput = document.createElement('input');
+                weightInput.type = 'number';
+                weightInput.id = `criteria_weight_${i+1}`;
+                weightInput.name = `criteria_weight_${i+1}`;
+                weightInput.step = 0.01;
+                criteriaFields.appendChild(weightInput);
+    
+                criteriaFields.appendChild(document.createElement('br'));
+                criteriaFields.appendChild(document.createElement('br'));
+            }
+        });
+    
+        // Listen for changes in the number of offers input field
+        const numOffersInput = form.querySelector('#num_offers');
+        numOffersInput.addEventListener('change', () => {
+            const numOffers = numOffersInput.value;
+    
+            // Create or remove the necessary input fields dynamically
+            const offerFields = document.querySelector('#offer-fields');
+            offerFields.innerHTML = '';
+            for (let i = 0; i < numOffers; i++) {
+                const label = document.createElement('label');
+                label.for = `offer_name_${i+1}`;
+                label.innerHTML = `Offer ${i+1} name:`;
+                offerFields.appendChild(label);
+    
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = `offer_name_${i+1}`;
+                input.name = `offer_name_${i+1}`;
+                offerFields.appendChild(input);
+    
+                offerFields.appendChild(document.createElement('br'));
+    
+                for (let j = 0; j < numCriteriaInput.value; j++) {
+                    const criteriaName = form.querySelector(`#criteria_name_${j+1}`).value;
+                    const scoreLabel = document.createElement('label');
+                    scoreLabel.for = `${input.name}_${criteriaName}`;
+                    scoreLabel.innerHTML = `${criteriaName} score for ${input.name}:`;
+                    offerFields.appendChild(scoreLabel);
+                    const scoreInput = document.createElement('input');
+                    scoreInput.type = 'number';
+                    scoreInput.id = `${input.name}_criteria_name_${i+1}`;
+                    scoreInput.name = `${input.name}_criteria_name_${i+1}`;
+                    scoreInput.step = 0.01;
+                    offerFields.appendChild(scoreInput);
+        
+                    offerFields.appendChild(document.createElement('br'));
+                    offerFields.appendChild(document.createElement('br'));
+                }
+            }
+        });
+    </script>
+</body>
+<body>
+    <h3>Live Date and Time</h3>
+    <p style="font-size: 80%" id="dateTime"></p>
+</body><br><br><br>
+<!-- Static bar -->
+<div class="static-bar">
+  <p align="center" style="font-size: 72%">Made with ❤ by Maen Derany. Buy me a <a href="https://ko-fi.com/maenderany" target="_blank"><span style="color: #d4728c">coffee.</span></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last updated: April 6, 2023.</p>
+</div>
+</html>

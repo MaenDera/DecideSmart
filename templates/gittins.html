@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecideSmart - Gittins</title>
+    <link rel="stylesheet" type="text/css" href="../templates/style.css"> 
+    <script>
+      // Create a function to update the date and time
+      function updateDateTime() {
+        // Get the current date and time from the system
+        let now = new Date();
+        // Convert it to a string in 24 hour format with date
+        let dateTimeString = new Intl.DateTimeFormat('en-US', {hour12: false, year:'numeric', month: 'long', day: 'numeric'}).format(now);
+        // Convert it to a string in 24 hour format with time
+        let timeString = new Intl.DateTimeFormat('en-US', {hour12: false, hour: 'numeric', minute: 'numeric'}).format(now);
+        // Get the HTML element that shows the date and time
+        let dateTimeElement = document.getElementById("dateTime");
+        // Set its content to the date and time string with a "-" separator
+        dateTimeElement.innerHTML = dateTimeString + " - " + timeString;
+      }
+
+      // Call the function every second to update the date and time
+      setInterval(updateDateTime, 10000);
+
+      // Call the function when window loads
+      window.onload = updateDateTime;
+	</script>
+<body>
+	<h1 align="center">Best Option</h1>
+	<div class="option-container">
+		<p align="center">{{ best_option }} - {{ best_cost }}</p>
+	</div><br><br><br>
+	<form>
+		<ul>
+		{% for option in other_options %}
+			<li>{{ option[0] }} - {{ option[1] }}</li>
+		{% endfor %}
+		</ul>
+	</form>
+</body><br>
+<body>
+  <h3>Live Date and Time</h3>
+  <p style="font-size: 80%" id="dateTime"></p>
+</body>
+<!-- Static bar -->
+<div class="static-bar">
+  <p align="center" style="font-size: 72%">Made with ❤ by Maen Derany. Buy me a <a href="https://ko-fi.com/maenderany" target="_blank"><span style="color: #d4728c">coffee.</span></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last updated: April 6, 2023.</p>
+</div>
+</html>
